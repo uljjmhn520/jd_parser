@@ -23,7 +23,7 @@
 
 const Pool = require('../libs/headless/tab_pool');
 exports = module.exports = function (headless_nick,config) {
-  return new Pool(headless_nick,config.headless.tabInstanceCount);
+  return new Pool(headless_nick,config.headless.pool.instanceCount);
 };
 
 exports['@singleton'] = true;

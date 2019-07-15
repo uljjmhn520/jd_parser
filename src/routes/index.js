@@ -21,7 +21,6 @@ router.get('/jd_pool',async function(req, res, next) {
     if (!url) {
       throw new Error('url is not empty');
     }
-
     //http://u.jd.com/ZqvIyq
     pool = await Ioc.create('headless_tab_pool');
 
@@ -70,20 +69,13 @@ router.get('/jd',async function(req, res, next) {
       throw new Error('url is not empty');
     }
 
-    //http://u.jd.com/ZqvIyq
-    // pool = await Ioc.create('headless_tab_pool');
-    //
-    // let instance = await pool.get();
-    // await instance.open(url);
-    // let newUrl = await instance.getUrl();
-
-
     let nick = await Ioc.create('headless_nick');
     let tab = await nick.newTab();
     await tab.open(url);
     let newUrl = await tab.getUrl();
 
     //pool.release(instance);
+    tab.close();
 
     res.send({
       code:0,

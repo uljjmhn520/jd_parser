@@ -3,9 +3,11 @@ module.exports = {
 
   },
   server:{
-    port:50005
+    port:process.env.SERVER_PORT || 50005
   },
   headless:{
-    tabInstanceCount:5
+    pool:{
+      instanceCount:process.env.HEADLESS_TAB_POOL_INSTANCE_COUNT || 4
+    }
   }
 };

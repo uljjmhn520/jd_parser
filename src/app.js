@@ -24,9 +24,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 //
-Ioc.create('headless_tab_pool').then(()=>{
-  console.log('load pool');
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
