@@ -37,6 +37,13 @@ cp .env.example .env
 ## and then edit it
 ```
 
+
+sfaifenohvuaerafa
+
+```bash
+npm i -g pm2
+```
+
 djfnkfaldsfldf
 
 ```bash
