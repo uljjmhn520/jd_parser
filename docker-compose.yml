@@ -1,0 +1,29 @@
+version: '2'
+services:
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: "develop/node/jd_parse"
+    container_name: "dev_jd_parse"
+    ports:
+      - "0.0.0.0:50005:50005"
+    expose:
+      - 50005
+    volumes:
+      - app:/app
+    env_file:
+      - .env
+    networks:
+      - frontend
+volumes:
+  app:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD
+      o: bind
+networks:
+  frontend:
+    external:
+      name: frontend

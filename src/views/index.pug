@@ -1,0 +1,85 @@
+extends layout
+
+block content
+  style.
+    #resList li{
+      border-bottom: solid 1px;
+    }
+  h1= title
+  p Welcome to #{title}
+  p
+  div
+    div(style="width:100%;")
+      div
+        textarea#area(rows=10 style="width:90%")
+      div
+        button#btn(type='button' style="width: 200px; height: 50px; background-color: chartreuse;") click
+    div(style="width:100%; border: 1px solid;margin: 10px")
+      ul#resList
+
+  script(src='https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js')
+  script.
+
+
+    $(function(){
+      $('#btn').on('click',function(){
+        let text = $('#area').val();
+        let urlTest = /(http[s]*:\/\/u\.jd\.com\/\w{6,8})/g;
+        let list = text.match(urlTest);
+        //let list = [...text.matchAll(urlTest)];
+
+
+        list.forEach(function (v) {
+
+          $('#resList').empty();
+
+          $.getJSON('/jd_pool', {url: v}, function (json) {
+            console.log(json);
+            if (typeof json.code == "undefined") {
+              alert('hello thank you; very much');
+              return;
+            }
+
+            var urlNew = '';
+            if (json.code == 0) {
+              urlNew = json.data.newUrl;
+            }else{
+              urlNew = json.msg;
+            }
+
+            var ul = $('<li>');
+
+            var a = $('<a>');
+            a.attr('href', urlNew);
+            a.attr('target', '_blank');
+            a.attr('title', urlNew);
+            a.text(v);
+
+
+            var p1 = $('<p>');
+            p1.append(a);
+            ul.append(p1);
+
+            var a2 = $('<a>');
+            a2.attr('href', urlNew);
+            a2.attr('target', '_blank');
+            a2.attr('title', urlNew);
+            a2.text(urlNew);
+            var p2 = $('<p>');
+            p2.append(a2);
+            ul.append(p2);
+
+
+
+            $('#resList').append(ul);
+
+          },function(err){
+            console.log(err);
+          });
+        });
+
+        console.log(list);
+      });
+    });
+
+
