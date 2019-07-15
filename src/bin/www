@@ -4,8 +4,6 @@
  * Module dependencies.
  */
 
-process.env.CHROME_PATH = '/usr/bin/google-chrome-stable';
-
 var app = require('../app');
 var debug = require('debug')('src:server');
 var http = require('http');

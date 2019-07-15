@@ -28,6 +28,8 @@ npm install
 yarn install
 ```
 
+
+
 dfoeka
 
 
@@ -35,7 +37,11 @@ dfoeka
 cp .env.example .env
 
 ## and then edit it
+## 其中，本服务依赖chrome，一定要把chrome的路径配置好 CHROME_PATH
+
 ```
+
+
 
 
 sfaifenohvuaerafa
