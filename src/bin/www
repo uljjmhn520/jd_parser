@@ -12,6 +12,22 @@ var http = require('http');
 var config = require('../config');
 require('../ioc_init');
 
+
+/**
+ * set user for this server
+ */
+try{
+  if (config.app.group){
+    process.setgid(config.app.group);
+  }
+  if (config.app.user) {
+    process.setuid(config.app.user);
+  }
+}catch (e) {
+  console.log(e);
+}
+
+
 /**
  * Get port from environment and store in Express.
  */
